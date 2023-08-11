@@ -32,18 +32,20 @@ function Grid({numberOfCards}){
     
     return(
         <div className="grid-wrapper"> 
+            
+            <h1>Current turn: {(turn) ? 'O':'X'}</h1>
+            <div className="grid">
+                {board.map((el,idx) => <Card key={idx} onPlay={play} player={el} index={idx} gameEnd={winner ? true : false}/> )}
+            </div> 
+
             {
                 winner && (
                     <>
-                        <h1> Winner is {winner} </h1>
+                        <h1 className="winnerHeading"> Winner is {winner} </h1>
                         <button className="reset" onClick={reset}> Reset Game</button>
                     </>
                 )
             }
-            <h1>Current turn: {(turn) ? 'O':'X'}</h1>
-            <div className="grid">
-                {board.map((el,idx) => <Card key={idx} onPlay={play} player={el} index={idx} gameEnd={winner ? true : false}/> )}
-            </div>   
         </div>
     );
 }
